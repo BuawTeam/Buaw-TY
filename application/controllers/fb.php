@@ -13,13 +13,19 @@ class FB extends CI_Controller
 	// {
 
 	// }
-	function parseingFB_1($postID){
+	function parseingFB($postID){
         $this->load->model('model_fbComments');
         $this->model_fbComments->setPostID($postID);
+        $limit=$this->makeLimit();
+
+        //if($limit =null){$limit=20;}
+
         // echo '>> '.$this->model_fbComments->getPostID();
 
-        $comments = $this->model_fbComments->comments_1();
-        $post = $this->model_fbComments->post(); //Parsing Post
+        // $comments = $this->model_fbComments->comments_1();
+        $comments = $this->model_fbComments->commentsLimit($limit);
+        // $comments =
+        $post  = $this->model_fbComments->post(); //Parsing Post
         $likes = $this->model_fbComments->like(); //Parsing likes
         $comments->data = $this->createComments($comments->data); //Parsing comments
 
@@ -31,22 +37,34 @@ class FB extends CI_Controller
         $data['comments_count'] = $comments->summary->total_count; //FB total count Comments
         $data['likes_count'] = $likes->summary->total_count; //FB total count Likes
         $data['postID'] = $postID; //FB post ID
+        $data['limit'] = $limit;
         $this->load->view('fbComments', $data); //Send prmt to view
+    }
+    function makeLimit(){
+        // $limit = 25;
+
+        if (isset($_GET['limit'])) {
+            $limit = $_GET['limit'];
+            echo "GET >> ".$limit;
+        }
+        else{
+            echo "GET >> Empty";
+            $limit=25;
+        }
+
+        if (!ctype_digit($limit)||$limit==0){$limit=25;}
+        if ($limit>100) {
+            $limit=100;
+        }
+
+        echo '  ->> LIMIT : '.$limit."<br>";;
+        return $limit;
     }
     function getPostPic($post)
     {
         return $post->images[count($post->images)-1]->source;
     }
 
-    function createComments_1($comments){
-
-        foreach ($comments as $item) {
-            $item->created_time = $this->dateFormat($item->created_time);
-            // array_push($item,$this->getProfilePic($item->from->id));
-            $item->profile_pic = $this->getProfilePic($item->from->id);
-        }
-        return $comments;
-    }
     function createComments($comments){
 
         foreach ($comments as $item) {

@@ -50,6 +50,20 @@
        	 	return $fb_response->comments;
 
 		}
+		function commentsLimit($limit)
+		{
+			// $graphUrl = "http://graph.facebook.com/".$this->postID."/comments?summary=1";
+			
+			$graphUrl = "http://graph.facebook.com/".$this->postID."?fields=comments.limit(".$limit.").summary(true){message,id,from,attachment,like_count,message_tags,created_time,comments.limit(50){message,from,attachment}}";
+			//$graphUrl = "http://graph.facebook.com/".$this->postID."?fields=comments.limit(100).summary(true){message,id,from,attachment,like_count,message_tags,created_time}";
+			echo $graphUrl;
+			$requests = file_get_contents($graphUrl);
+       	 	$fb_response = json_decode($requests);
+
+       	 	// return $fb_response;
+       	 	return $fb_response->comments;
+
+		}
 		function like()
 		{
 			$graphUrl = "http://graph.facebook.com/".$this->postID."/likes?summary=1";
