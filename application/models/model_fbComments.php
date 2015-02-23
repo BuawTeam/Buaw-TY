@@ -42,7 +42,7 @@
 		function comments_1()
 		{
 			// $graphUrl = "http://graph.facebook.com/".$this->postID."/comments?summary=1";
-			$graphUrl = "http://graph.facebook.com/".$this->postID."?fields=comments.limit(100).summary(true){message,id,from,attachment,like_count,message_tags,created_time}";
+			$graphUrl = "http://graph.facebook.com/".$this->postID."?fields=comments.limit(10).summary(true){message,id,from,attachment,like_count,message_tags,created_time}";
 			$requests = file_get_contents($graphUrl);
        	 	$fb_response = json_decode($requests);
 
