@@ -76,8 +76,10 @@
 				}
 
 				echo '<a href="'.$graphUrl.'">'.$graphUrl.'</a><br>Page '.$i.' :> AFTER = '.$after."<br><br>";
-
+				$urlarray[$i] = $graphUrl; 
+				$iarray[$i] = $i;
 			}
+			return array("url" => $urlarray,"countpage" => $iarray);
 			echo '<br> >>>>> '.count($this->allComments->data)."<br>".$this->allComments->data[count($this->allComments->data)-1]->id.'<br>';
 
 

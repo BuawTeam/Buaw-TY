@@ -1,6 +1,13 @@
 <html>
 <head>
 	<title>FB comment</title>
+	<meta charset="UTF-8" />
+	<!-- JavaScript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  	<?php echo css_asset('bootstrap.min.css'); ?>
+	<?php echo js_asset('bootstrap.min.js'); ?>
 </head>
 <body>
 	<h1>Facebook comments <?= $postID;  ?> </h1><br>
@@ -9,6 +16,12 @@
 	<img src=" <?= $post_pic  ?> " alt=""><br>
 	Comments : <?= $comments_count  ?> , Likes : <?= $likes_count  ?><br><br>
 Limit : <?= $limit ?>
+<ul class = "pagination">
+		<?php foreach ($urllink as $urllinkkey) { ?>
+			<li class = "button"><a href="#<?php $urllinkkey; ?>">aa</a></li>
+			<?php print_r($urllinkkey);?>
+		<?php } ?>
+</ul>
 <table border='1' >
 	<tr>
 		<td>Profile</td>

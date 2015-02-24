@@ -43,11 +43,18 @@ class FB extends CI_Controller
     public function pagingTest($limit)
     {
         $this->load->model('model_fbComments');
-        $this->model_fbComments->Paging($limit);
-        $comments = $this->model_fbComments->getAllComments();
+        $urlpage = $this->model_fbComments->Paging($limit);
+        
+        $data["urllink"] = $urlpage["url"];
+        $data["urlcountpage"] = $urlpage["countpage"];
+        print_r($urlpage["countpage"][2]);
+        /*print_r($url[0]);*/
 
+        $comments = $this->model_fbComments->getAllComments();
         $data['comments'] = $comments;
-        // $this->load->view('testFB', $data); //Send prmt to view
+        
+        //Send output to view
+        $this->load->view('fbComments', $data);
     }
     function makeLimit(){
         // $limit = 25;
