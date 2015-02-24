@@ -7,10 +7,10 @@ class Welcome extends CI_Controller {
 	 *
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
-	 *	- or -  
+	 *	- or -
 	 * 		http://example.com/index.php/welcome/index
 	 *	- or -
-	 * Since this controller is set as the default controller in 
+	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 	public function getfeed ($fbID){
-        
+
         $url = "https://graph.facebook.com/".$fbID."/feed?limit=100".'&access_token=1566772446943313|fd4d1e9a8b3ced39e57b3fe7b43b03cd';
      	$requests = file_get_contents($url);
        	$fb_response = json_decode($requests);
@@ -33,7 +33,7 @@ class Welcome extends CI_Controller {
     			echo "->message : ".$item->message."<br> ".$item->from->name."<br><br>";
     		}
     	}
-    
+
 	}
 }
 

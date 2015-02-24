@@ -40,6 +40,15 @@ class FB extends CI_Controller
         $data['limit'] = $limit;
         $this->load->view('fbComments', $data); //Send prmt to view
     }
+    public function pagingTest($limit)
+    {
+        $this->load->model('model_fbComments');
+        $this->model_fbComments->Paging($limit);
+        $comments = $this->model_fbComments->getAllComments();
+
+        $data['comments'] = $comments;
+        // $this->load->view('testFB', $data); //Send prmt to view
+    }
     function makeLimit(){
         // $limit = 25;
 

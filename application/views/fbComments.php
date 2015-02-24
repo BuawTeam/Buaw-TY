@@ -36,7 +36,7 @@ Limit : <?= $limit ?>
 	function checkLink($text){
 		$pattern = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
        	$text= preg_replace($pattern, "<a href=\"\\0\"?phpMyAdmin=uMSzDU7o3aUDmXyBqXX6JVQaIO3&phpMyAdmin=8d6c4cc61727t4d965138r21cd rel=\"nofollow\">\\0</a>", $text);
-		
+
 		return $text;
 	}
      function checkTag($item){
@@ -58,7 +58,7 @@ Limit : <?= $limit ?>
 	function checkReply($item){
 	    if(!empty($item->comments)){
 	    	echo "<br>@Reply : ".count($item->comments->data)."<br>";
-	        foreach ($item->comments->data as $reply) {	        	
+	        foreach ($item->comments->data as $reply) {
 	            echo checkLink("&nbsp&nbsp&nbsp - ".$reply->from->name." : ".$reply->message)."<br>";
 	            // checkAttachment($reply);
 	            // echo $comments[$i]->message; checkTag($comments[$i]); checkAttachment($comments[$i]).'<br>';
