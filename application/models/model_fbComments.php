@@ -58,7 +58,7 @@
 			$page_count = ($comments_count/$limit);
 			$after = $fb_response->paging->cursors->after;
 			// echo "AFTER >> ".$fb_response->paging->cursors->after;
-			echo "Comments : ".$comments_count."<br>";
+			echo "<br>Comments : ".$comments_count."<br>";
 			echo "Paging : ".$page_count."<br><br>";
 			for ($i=0; $i < $page_count; $i++) {
 
